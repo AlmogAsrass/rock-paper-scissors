@@ -33,37 +33,74 @@ add an error option to check for errors
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == "rock" && computerSelection == "scissors") {
-        return `You Won! Rock beats Scissors. Score is You:${++playerScore} | Computer:${computerScore}`
+        return "player"
     }
     else if (playerSelection == "rock" && computerSelection == "paper") {
-        return `You lost! Paper beats Rock. Score is You:${playerScore} | Computer:${++computerScore}`
+        return "computer"
     }
     else if (playerSelection == "paper" && computerSelection == "scissors") {
-        return `You lost! Scissors beats Paper. Score is You:${playerScore} | Computer:${++computerScore}`
+        return "computer"
     }
     else if (playerSelection == "paper" && computerSelection == "rock") {
-        return `You won! Paper beats Rock. Score is You:${++playerScore} | Computer:${computerScore}`
+        return "player"
     }
     else if (playerSelection == "scissors" && computerSelection == "paper") {
-        return `You won! Scissors beats Paper. Score is You:${++playerScore} | Computer:${computerScore}`
+        return "player"
     }
     else if (playerSelection == "scissors" && computerSelection == "rock") {
-        return `You lost! Rock beats Scissors. Score is You:${playerScore} | Computer:${++computerScore}`
+        return "computer"
     }
     else if (playerSelection == computerSelection) {
-        return `It's a tie! rocking janai! Score is You:${playerScore} | Computer:${computerScore}`
+        return "tie"
     }
     else {
-        return "Spelling Error!"
+        return "Error!"
     }
 }
 
-function game() {
-    console.log(playRound(playerSelection, computerSelection));
-    console.log(playRound(playerSelection, computerSelection));
-    console.log(playRound(playerSelection, computerSelection));
-    console.log(playRound(playerSelection, computerSelection));
-    console.log(playRound(playerSelection, computerSelection));
+result = playRound(playerSelection, computerSelection)
+
+function playGame() {
+    playRound(playerSelection, computerSelection);
+    if (result == "player") {
+        console.log(`You Won. The score is ${++playerScore} | ${computerScore}`)
+    }
+    else if (result == "computer") {
+        console.log(`You Lost! The Score is ${playerScore} | ${++computerScore}`)
+    }
+    else if (result == "tie") {
+        console.log(`Tie! The score is ${playerScore} | ${computerScore}`)
+    }
+    else {
+        console.log("Try again!")
+    }
 }
 
-console.log(game())
+function game () {
+    playGame();
+    getPlayerSelection();
+    getComputerChoice();
+    playGame();
+    getPlayerSelection();
+    getComputerChoice();
+    playGame();
+    getPlayerSelection();
+    getComputerChoice();
+    playGame();
+    getPlayerSelection();
+    getComputerChoice();
+    playGame();
+}
+
+game();
+
+/*
+`You Won! Rock beats Scissors. Score is You:${++playerScore} | Computer:${computerScore}`
+`You lost! Paper beats Rock. Score is You:${playerScore} | Computer:${++computerScore}`
+`You won! Paper beats Rock. Score is You:${++playerScore} | Computer:${computerScore}`
+`You lost! Scissors beats Paper. Score is You:${playerScore} | Computer:${++computerScore}`
+`You won! Scissors beats Paper. Score is You:${++playerScore} | Computer:${computerScore}`
+`You lost! Rock beats Scissors. Score is You:${playerScore} | Computer:${++computerScore}`
+`It's a tie! rocking janai! Score is You:${playerScore} | Computer:${computerScore}`
+*/
+
