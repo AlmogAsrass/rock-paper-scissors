@@ -15,8 +15,10 @@ function getPlayerSelection() {
     return prompt("Make your choice! Rock, Paper, Scissors?").toLowerCase()
 }
 
-const computerSelection = getComputerChoice()
-const playerSelection = getPlayerSelection()
+let computerSelection = getComputerChoice()
+let playerSelection = getPlayerSelection()
+let playerScore = 0;
+let computerScore = 0;
 
 /* This is a function to return the resutl of the game.
 If player chose rock and computer chose scissors return "You Won! Rock beats Scissors"
@@ -28,29 +30,40 @@ if player chose scissors and computer chose paper return "You won! Scissors beat
 Otherwise return "It's a tie! Rocking janai!"
 add an error option to check for errors
 */
+
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == "rock" && computerSelection == "scissors") {
-        return "You Won! Rock beats Scissors"
+        return `You Won! Rock beats Scissors. Score is You:${++playerScore} | Computer:${computerScore}`
     }
     else if (playerSelection == "rock" && computerSelection == "paper") {
-        return "You lost! Paper beats Rock"
+        return `You lost! Paper beats Rock. Score is You:${playerScore} | Computer:${++computerScore}`
     }
     else if (playerSelection == "paper" && computerSelection == "scissors") {
-        return "You lost! Scissors beats Paper"
+        return `You lost! Scissors beats Paper. Score is You:${playerScore} | Computer:${++computerScore}`
     }
     else if (playerSelection == "paper" && computerSelection == "rock") {
-        return "You won! Paper beats Rock"
+        return `You won! Paper beats Rock. Score is You:${++playerScore} | Computer:${computerScore}`
     }
     else if (playerSelection == "scissors" && computerSelection == "paper") {
-        return "You won! Scissors beats Paper"
+        return `You won! Scissors beats Paper. Score is You:${++playerScore} | Computer:${computerScore}`
     }
     else if (playerSelection == "scissors" && computerSelection == "rock") {
-        return "You lost! Rock beats Scissors"
+        return `You lost! Rock beats Scissors. Score is You:${playerScore} | Computer:${++computerScore}`
     }
     else if (playerSelection == computerSelection) {
-        return "It's a tie! rocking janai!"
+        return `It's a tie! rocking janai! Score is You:${playerScore} | Computer:${computerScore}`
     }
     else {
         return "Spelling Error!"
     }
 }
+
+function game() {
+    console.log(playRound(playerSelection, computerSelection));
+    console.log(playRound(playerSelection, computerSelection));
+    console.log(playRound(playerSelection, computerSelection));
+    console.log(playRound(playerSelection, computerSelection));
+    console.log(playRound(playerSelection, computerSelection));
+}
+
+console.log(game())
