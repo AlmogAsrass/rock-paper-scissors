@@ -1,0 +1,1 @@
+In this project I create a simple Rock-Paper-Scissors game, using basic JavaScript skills.
