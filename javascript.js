@@ -12,10 +12,6 @@ function getComputerSelection() {
     return computerChoice;
 }
 
-function getPlayerSelection() {
-    return prompt("Make your choice! Rock, Paper, Scissors?").toLowerCase();
-}
-
 let computerSelection;
 let playerSelection;
 let playerScore = 0;
@@ -44,45 +40,32 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection == computerSelection) {
         result = "tie"
     }
-    else {
-        result = "spelling error"
-    }
 }
 
 function playGame() {
-    playerSelection = getPlayerSelection();
+    //playerSelection = getPlayerSelection();
     computerSelection = getComputerSelection();
+    const text = document.querySelector('.text');
     playRound(playerSelection, computerSelection);
-    if (result == "player") {
-        console.log(`You Won. The score is You:${++playerScore} | Computer:${computerScore}`)
+    if(playerScore >= 4) {
+        text.textContent = "You won! Game Over."
+    } else if (computerScore >= 4) {
+        text.textContent = "You lost! Game Over."
+    } else if (result == "player") {
+        text.textContent = `You won! The score is You:${++playerScore} | Computer:${computerScore}`;
     }
     else if (result == "computer") {
-        console.log(`You Lost! The Score is You:${playerScore} | Computer:${++computerScore}`)
+        text.textContent = `You Lost! The Score is You:${playerScore} | Computer:${++computerScore}`;
     }
     else if (result == "tie") {
-        console.log(`Tie! The score is You:${++playerScore} | You:${++computerScore}`)
-    }
-    else if (result == "spelling error") {
-        playGame()
+        text.textContent = `Tie! The score is You:${++playerScore} | Computer:${++computerScore}`;
     }
 }
 
-function game() {
-    playGame();
-    playGame();
-    playGame();
-    playGame();
-    playGame();
-}
-
-game();
-
-if (playerScore > computerScore) {
-    alert(`You Won! Final Score: You:${playerScore} | Computer:${computerScore}`)
-}
-else if (playerScore < computerScore) {
-    alert(`You Lost! Final Score: You:${playerScore} | Computer:${computerScore}`)
-}
-else {
-    alert(`Tie Game! Final Score: You:${playerScore} | Computer:${computerScore}`)
-}
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+        playerSelection = e.target.id;
+        playGame();
+    });
+});
